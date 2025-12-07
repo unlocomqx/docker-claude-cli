@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  claude:
+    build: .
+    container_name: claude-code
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount your project directory here
+      - ./workspace:/workspace
+      # Optionally mount Claude config
+      - ~/.claude:/root/.claude
+    working_dir: /workspace
