@@ -8,7 +8,7 @@ services:
     tty: true
     volumes:
       # Mount your project directory here
-      - ./workspace:/workspace
+      - ${WORKSPACE_LOCAL}:${WORKSPACE_DOCKER-/workspace}
       # Optionally mount Claude config
       - ~/.claude:/root/.claude
     working_dir: /workspace
