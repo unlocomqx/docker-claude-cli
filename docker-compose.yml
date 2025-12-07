@@ -1,14 +1,15 @@
-version: '3.8'
-
 services:
   claude:
     build: .
-    container_name: claude-code
+    container_name: claude
     stdin_open: true
     tty: true
     volumes:
       # Mount your project directory here
       - ${WORKSPACE_LOCAL}:${WORKSPACE_DOCKER-/workspace}
       # Optionally mount Claude config
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
       - ~/.claude:/root/.claude
-    working_dir: /workspace
+      - ~/.claude.json:/root/.claude.json
+    working_dir: ${WORKSPACE_DOCKER-/workspace}
