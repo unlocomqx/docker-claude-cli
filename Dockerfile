@@ -4,12 +4,7 @@ FROM ubuntu:25.10
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    unzip \
-    zsh \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install oh-my-zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    unzip
 
 # Install bun
 RUN curl -fsSL https://bun.sh/install | bash
@@ -17,6 +12,7 @@ ENV PATH="/root/.bun/bin:$PATH"
 
 # Install Claude Code
 RUN bun i -g @anthropic-ai/claude-code
+RUN bun i -g @owloops/claude-powerline
 
 RUN ln -s /root/.bun/bin/bun /usr/local/bin/node
 
