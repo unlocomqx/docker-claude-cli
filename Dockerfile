@@ -11,10 +11,16 @@ RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:$PATH"
 
 # Install Claude Code
-RUN curl -fsSL https://claude.ai/install.sh | bash
-RUN bun i -g @owloops/claude-powerline
+RUN bun i -g @anthropic-ai/claude-code @owloops/claude-powerline
 
-RUN ln -s /root/.bun/bin/bun /usr/local/bin/node
+# Create non-root user
+RUN useradd -m -s /bin/bash claude
+RUN cp -r /root/.bun /home/claude/.bun && chown -R claude:claude /home/claude/.bun
+RUN ln -sf /home/claude/.bun/bin/bun /usr/local/bin/node
+
+USER claude
+ENV PATH="/home/claude/.bun/bin:$PATH"
+WORKDIR /home/claude
 
 # Set entrypoint
 ENTRYPOINT ["tail", "-f", "/dev/null"]

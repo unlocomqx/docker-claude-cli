@@ -8,8 +8,8 @@ services:
       # Mount your project directory here
       - ${WORKSPACE_LOCAL}:${WORKSPACE_DOCKER-/workspace}
       # Optionally mount Claude config
-      - ~/.gitconfig:/root/.gitconfig
-      - ~/.ssh:/root/.ssh
-      - ~/.claude:/root/.claude
-      - ~/.claude.json:/root/.claude.json
+      - ~/.gitconfig:/home/claude/.gitconfig
+      - ~/.ssh:/home/claude/.ssh
+      - ~/.claude:/home/claude/.claude
+      - ~/.claude.json:/home/claude/.claude.json
     working_dir: ${WORKSPACE_DOCKER-/workspace}
