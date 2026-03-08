@@ -11,7 +11,7 @@ RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH="/root/.bun/bin:$PATH"
 
 # Install Claude Code
-RUN bun i -g @anthropic-ai/claude-code
+RUN curl -fsSL https://claude.ai/install.sh | bash
 RUN bun i -g @owloops/claude-powerline
 
 RUN ln -s /root/.bun/bin/bun /usr/local/bin/node
